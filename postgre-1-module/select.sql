@@ -31,6 +31,16 @@ SELECT email as "Student Email", age as "Student Age" FROM students
 SELECT * FROM students ORDER BY age ASC, first_name ASC; 
 
 
+-- unique kono kico find or qury korte DISTINCT use kora hoy...
+
+SELECT DISTINCT country FROM students 
+
+
+SELECT DISTINCT course FROM students 
+
+
+SELECT DISTINCT age FROM students 
+
 -- delet table form database
 
  DROP TABLE students
@@ -59,3 +69,55 @@ VALUES
     ('Emma', 'Gonzalez', 24, 'A', 'Physics', NULL, '1999-09-30', 'B+', 'Australia'),
     ('Miam', 'Wright', 19, 'C', 'Math', 'liam.wright@example.com', '2002-06-14', 'A+', 'New Zealand');
 
+
+
+
+-- data filtering
+
+-- Select students from the USA
+-- Select students with 'A' grade in Physics
+-- Select students with a specific blood group ('A+')
+-- Select students from the USA or from Australia
+-- Select students from the USA or from Australia and the age is 20
+-- Select students with a grade of 'A' or 'B' in Math or Physics:
+
+-- Select students older than 20
+
+
+SELECT * FROM students
+
+
+--Select students from the USA
+SELECT * FROM students 
+   WHERE country = 'UK'
+
+-- Select students with 'A' grade in Physics
+
+SELECT * FROM students 
+   WHERE grade = 'A' AND course = 'Physics'
+
+-- Select students with a specific blood group ('A+')
+
+SELECT * FROM students 
+   WHERE blood_group = 'A+' 
+
+
+-- Select students from the USA or from Australia
+
+SELECT * FROM students 
+   WHERE country = 'USA' OR country = 'Australia'
+
+-- Select students from the USA or from Australia and the age is 20
+
+SELECT * FROM students 
+   WHERE (country = 'USA' OR country = 'Australia') AND age = 20
+
+-- Select students with a grade of 'A' or 'B' in Math or Physics:
+
+SELECT * FROM students
+   WHERE (grade = 'A' OR grade = 'B') AND (course = 'Math' OR course = 'Physics')
+
+-- Select students older than 20
+
+SELECT * FROM students
+   WHERE age > 21 and course = 'Biology'
