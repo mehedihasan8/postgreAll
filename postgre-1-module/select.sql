@@ -121,3 +121,107 @@ SELECT * FROM students
 
 SELECT * FROM students
    WHERE age > 21 and course = 'Biology'
+
+
+--select student != usa
+
+SELECT * FROM students
+   WHERE country != 'USA'
+
+--select student != usa another waye......
+
+
+SELECT * FROM students
+   WHERE country <> 'UK'
+
+
+
+/*
+    @Scalar functions
+ UPPER() Converts a string to uppercase.
+ LOWER() Converts a string to lowercase.
+ CONCAT() Concatenates two or more strings.
+ LENGTH() Returns the number of characters in a string.
+ 
+    @Aggregate functions
+ AVG() Calculate the average of a set of values.
+ MAX() Returns the max value in a set.
+ MIN() Returns the minimum value in a set.
+ SUM Calculates the sum of values in a set.
+ COUNT() Counts the number of rows in a set.
+
+*/
+
+SELECT * FROM students
+
+
+--see columsn length. 
+
+SELECT length(first_name) from students;
+
+--count avarege
+
+SELECT AVG(age) as "Student Avarege Age" FROM students
+
+-- null value niye kaj korar jonno (is) oparator use korte hobe
+
+SELECT * FROM students 
+   WHERE email is null
+
+-- null value bad diye khujar jonno is not null use korte hobe
+
+SELECT * FROM students 
+   WHERE email is not null
+
+-- amra chaile null valur jonno default value set kore dite pari (COALESCE) method use kore
+
+SELECT COALESCE(email, 'Email not provided') as "Email", age, first_name from students
+
+
+-- qury onnak boro hoy geche. 
+SELECT * FROM students 
+   WHERE country = 'UK' or country = 'USA' or country = 'Canada'
+
+--===== qury short form 
+
+SELECT * FROM students
+    WHERE country in('UK','USA','Canada')
+
+SELECT * FROM students 
+   WHERE country not in('UK','USA','Canada')
+
+--===== range select kora jonno between us kora hoy
+
+SELECT * from students 
+   WHERE dob BETWEEN '2000-01-01' and '2006-01-01' ORDER BY dob DESC
+
+
+--search for every thik
+
+
+SELECT * from students
+    WHERE first_name LIKE '___a'; --case sensetive
+
+
+SELECT * from students
+    WHERE first_name ILIKE 'A%'; --case insensetive
+
+-- pagination or skip
+
+SELECT * from students LIMIT 5 OFFSET 5 * 0;
+SELECT * from students LIMIT 5 OFFSET 5 * 1;
+SELECT * from students LIMIT 5 OFFSET 5 * 2;
+SELECT * from students LIMIT 5 OFFSET 5 * 3;
+
+-- delete row using filtaring
+
+DELETE FROM students
+    WHERE grade = 'C' AND country = 'USA';
+
+-- update data 
+
+UPDATE students
+    set email = 'default@mail.com', age = 30, course = 'Chemesty'
+   WHERE student_id = 5;
+
+   SELECT * from students
