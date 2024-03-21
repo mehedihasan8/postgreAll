@@ -16,16 +16,29 @@ const update = async () => {
 
   // update many data
 
-  const updateData = await prisma.post.updateMany({
+  // const updateData = await prisma.post.updateMany({
+  //   where: {
+  //     title: "Title many 1",
+  //   },
+  //   data: {
+  //     published: true,
+  //   },
+  // });
+
+  const upsertData = await prisma.post.upsert({
     where: {
-      title: "Title many 1",
+      id: 9,
     },
-    data: {
-      published: true,
+    update: {
+      contact: "just update",
+    },
+    create: {
+      title: "nai re bhia",
+      contact: "ache re bhai ",
     },
   });
 
-  console.log(updateData);
+  console.log(upsertData);
 };
 
 update();

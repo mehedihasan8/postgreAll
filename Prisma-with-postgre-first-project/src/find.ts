@@ -20,6 +20,10 @@ const main = async () => {
     where: {
       id: 5,
     },
+    select: {
+      title: true,
+      contact: true,
+    },
   });
 
   console.log({ findUnique });
