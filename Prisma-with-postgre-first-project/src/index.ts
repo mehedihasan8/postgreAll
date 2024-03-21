@@ -10,9 +10,6 @@ const main = async () => {
       autherName: "This me",
     },
   });
-
-  const getAllData = await prima.post.findMany();
-  console.log(getAllData);
 };
 
 main();
