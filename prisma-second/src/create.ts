@@ -11,13 +11,41 @@ const main = async () => {
   //     },
   //   });
 
-  const createProfile = await prisma.profile.create({
+  //   const createProfile = await prisma.profile.create({
+  //     data: {
+  //       bio: "this is main bio.....",
+  //       userId: 1,
+  //     },
+  //   });
+
+  //   const createCategory = await prisma.category.create({
+  //     data: {
+  //       name: "web...",
+  //     },
+  //   });
+
+  const createPost = await prisma.post.create({
     data: {
-      bio: "this is main bio.....",
-      userId: 1,
+      title: "this is title..",
+      content: "this is content of the post",
+      authorId: 1,
+      postCategory: {
+        create: {
+          categoryId: 4,
+          //   category: {
+          //     connect: {
+          //       id: 1,
+          //     },
+          //   },
+        },
+      },
+    },
+    include: {
+      postCategory: true,
     },
   });
-  console.log(createProfile);
+
+  console.log(createPost);
 };
 
 main();
