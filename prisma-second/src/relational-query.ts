@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { run } from "node:test";
 
 const prisma = new PrismaClient();
 
@@ -15,14 +16,27 @@ const main = async () => {
 
   // include
 
-  const result = await prisma.user.findUnique({
-    where: {
-      id: 1,
-    },
+  //   const result = await prisma.user.findUnique({
+  //     where: {
+  //       id: 1,
+  //     },
+  //     include: {
+  //       post: true,
+  //     },
+  //   });
+
+  //reletion filter
+
+  const result = await prisma.user.findMany({
     include: {
-      post: true,
+      post: {
+        where: {
+          published: true,
+        },
+      },
     },
   });
-  console.log(result);
+
+  console.dir(result, { depth: Infinity });
 };
 main();
