@@ -35,6 +35,48 @@ const main = async () => {
     },
   });
 
-  console.log(orFilting);
+  //not filtering and persial search
+
+  const notFiltering = await prisma.post.findMany({
+    where: {
+      NOT: [
+        {
+          title: {
+            contains: "title",
+          },
+        },
+      ],
+    },
+  });
+
+  //search with first letter
+
+  const emdtWith = await prisma.user.findMany({
+    where: {
+      email: {
+        endsWith: ".com",
+      },
+    },
+  });
+  //search with first letter
+
+  const equlWith = await prisma.user.findMany({
+    where: {
+      email: {
+        equals: "usre1@gmail.com",
+      },
+    },
+  });
+  //search with first letter
+
+  const startWith = await prisma.user.findMany({
+    where: {
+      email: {
+        startsWith: "f",
+      },
+    },
+  });
+
+  console.log(equlWith);
 };
 main();
