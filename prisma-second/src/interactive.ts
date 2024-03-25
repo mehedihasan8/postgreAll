@@ -12,6 +12,24 @@ const main = async () => {
     });
     //query --- 2
     const totalCount = await transactionClient.user.count();
+
+    // query 3
+    const updateUser = await transactionClient.user.update({
+      where: {
+        id: 7,
+      },
+      data: {
+        age: 50,
+      },
+    });
+
+    return {
+      gerAllPost,
+      totalCount,
+      updateUser,
+    };
   });
+
+  console.log(result);
 };
 main();
