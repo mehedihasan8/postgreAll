@@ -77,6 +77,37 @@ const main = async () => {
     },
   });
 
-  console.log(equlWith);
+  //filtering with array like
+
+  const userNameArray = ["User 1", "User 2", "user3"];
+
+  const userNameByArray = await prisma.user.findMany({
+    where: {
+      username: {
+        in: userNameArray,
+      },
+    },
+  });
+
+  //indepthdata like relational model and all data find
+
+  const idDeptData = await prisma.user.findUnique({
+    where: {
+      id: 1,
+    },
+    include: {
+      post: {
+        include: {
+          postCategory: {
+            include: {
+              category: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  console.dir(idDeptData, { depth: Infinity });
 };
 main();
